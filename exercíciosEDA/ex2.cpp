@@ -7,11 +7,28 @@ struct funcionarios{
     int matricula;
     double salario;
 };
-
 double media;
 
+void ordenarSalario(funcionarios func[]){
+    int menor,aux;
+    for(int i=0;i<5-1;i++){
+        menor = i;
+        for(int j=i+1;j<5;j++){
+            if(func[menor].salario > func[j].salario){
+            menor = j;
+            }
+        }
+        aux = func[i].salario;
+        func[i].salario = func[menor].salario;
+        func[menor].salario = aux;
+    }
+  cout << "salarios em ordem crescente: \n";
+  for(int i=0;i<5;i++){
+    cout << func[i].salario << "\n";
+  }  
+}
 void somatorioSalarios(funcionarios func[]){
-    double soma;
+    double soma=0.0;
     for(int i=0;i<5;i++){
     soma += func[i].salario;
     }
@@ -45,6 +62,7 @@ func[4].matricula = 2348841;
 func[4].salario = 988.75;
 somatorioSalarios(func);
 matriculaMenorSalario(func);
-
+ordenarSalario(func);
+  
 return 0;
 }

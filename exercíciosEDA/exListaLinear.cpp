@@ -18,6 +18,22 @@ void mostrar(int A[],int B[],int C[]){
         cout << C[i];
     }
 }
+void busca(int C[]){
+    int buscado,i=0;
+    bool achei = false;
+    cout << "qual número deseja buscar? ";
+    cin >> buscado;
+    while(i<tamanho3){
+        if(C[i] == buscado)
+            achei=true;
+        else
+            i++;
+    }
+    if(achei == true){
+        cout << "elemento encontrado na posição: " << i;
+    }else
+        cout << "elemento não encontrado no vetor.";
+}
 int main(){
 int A[tamanho] = {10,4,3,0,7,1,11,32,17,6},B[tamanho2] = {99,45,32,21,11,8,3,0,1,18},C[tamanho3];
 intercalarElementos(A,B,C);
