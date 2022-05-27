@@ -12,7 +12,7 @@ void intercalarElementos(int A[],int B[],int C[]){
         j++;
     }
 }
-void busca(int C[]){
+void buscar(int C[]){
     int buscado,i=0;
     bool achei = false;
     cout << "qual número deseja buscar? ";
@@ -38,7 +38,7 @@ void remover(int A[]){
         }
     }
 }
-void mostrar(int A[],int C[]){
+void mostrar(int A[],int B[],int C[]){
     cout << "vetor C: ";
     for(int i=0;i<tamanho3;i++){
         cout << C[i] << "\t";
@@ -49,24 +49,29 @@ void mostrar(int A[],int C[]){
         cout << A[i] << "\t";
     }
     cout << "\n";
+    cout << "vetor B: ";
+     for(int i=0;i<tamanho;i++){
+        cout << B[i] << "\t";
+    }
+    cout << "\n";
 }
 int main(){
-int A[tamanho] = {10,4,3,0,7,1,11,32,17,6},B[tamanho2] = {99,45,32,21,11,8,3,0,1,18},C[tamanho3];
-int resposta;
-do{
-cout << "qual opcao deseja usar? \n0 - sair \n1 - intercalar os vetores A e B \n2 - mostrar elementos do vetor C \n3 - buscar elementos no vetor C \n4 - remover os 2 primeiros elementos do vetor A\n";
-cin >> resposta; 
-  switch(resposta){
-    case 1: intercalarElementos(A,B,C);
-    break;
-    case 2: mostrar(A,C);
-    break;
-    case 3: busca(C);
-    break;
-    case 4: remover(A);
-    break;
-  }
-}while(resposta!=0);
+int A[tamanho] = {10,4,3,0,7,1,11,32,17,6},B[tamanho2] = {99,45,32,21,11,8,3,0,1,18},C[tamanho3]={0};
+int R;
+    do{
+    cout << "qual opcao deseja usar? \n0 - sair \n1 - intercalar os vetores A e B \n2 - mostrar elementos do vetor C \n3 - buscar elementos no vetor C \n4 - remover os 2 primeiros elementos do vetor A\n";
+    cin >> R; 
+        switch(R){
+        case 1: intercalarElementos(A,B,C);
+        break;
+        case 2: mostrar(A,B,C);
+        break;
+        case 3: buscar(C);
+        break;
+        case 4: remover(A);
+        break;
+    }
+    }while(R!=0);
 
 return 0;
 }
