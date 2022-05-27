@@ -33,9 +33,7 @@ void remover(int A[]){
         if(i == 0){
           A[i] = 0;
         }
-    }
-    for(int i=0;i<tamanho;i++){
-      if(i == 1){
+        if(i == 1){
           A[i] = 0;
         }
     }
