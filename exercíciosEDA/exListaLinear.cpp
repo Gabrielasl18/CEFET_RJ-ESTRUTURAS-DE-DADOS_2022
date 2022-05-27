@@ -26,34 +26,31 @@ void busca(int C[]){
     if(achei == true){
         cout << "elemento encontrado na posição: " << i << "\n";
     }else
-        cout << "elemento não encontrado no vetor.";
+        cout << "elemento não encontrado no vetor.\n";
 }
 void remover(int A[]){
-  A[0] = 0;
-  A[1] = 0;
+    for(int i=0;i<tamanho;i++){
+        if(i == 0){
+          A[i] = 0;
+        }
+    }
+    for(int i=0;i<tamanho;i++){
+      if(i == 1){
+          A[i] = 0;
+        }
+    }
 }
-void mostrar(int A[],int B[],int C[]){
-    cout << "vetor intercalado ";
+void mostrar(int A[],int C[]){
+    cout << "vetor C: ";
     for(int i=0;i<tamanho3;i++){
         cout << C[i] << "\t";
     }
-cout << "\n";
-}
-void busca(int C[]){
-    int buscado,i=0;
-    bool achei = false;
-    cout << "qual número deseja buscar? ";
-    cin >> buscado;
-    while(i<tamanho3){
-        if(C[i] == buscado)
-            achei=true;
-        else
-            i++;
+    cout << "\n";
+    cout << "vetor A: ";
+     for(int i=0;i<tamanho;i++){
+        cout << A[i] << "\t";
     }
-    if(achei == true){
-        cout << "elemento encontrado na posição: " << i;
-    }else
-        cout << "elemento não encontrado no vetor.";
+    cout << "\n";
 }
 int main(){
 int A[tamanho] = {10,4,3,0,7,1,11,32,17,6},B[tamanho2] = {99,45,32,21,11,8,3,0,1,18},C[tamanho3];
@@ -64,11 +61,12 @@ cin >> resposta;
   switch(resposta){
     case 1: intercalarElementos(A,B,C);
     break;
-    case 2: mostrar(A,B,C);
+    case 2: mostrar(A,C);
     break;
     case 3: busca(C);
     break;
     case 4: remover(A);
+    break;
   }
 }while(resposta!=0);
 
