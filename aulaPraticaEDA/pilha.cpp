@@ -20,6 +20,7 @@ void listar(){
     noPtr p = topo;
         while(p!=NULL){
         cout << p << endl;
+        p++;
         }
     }
      
