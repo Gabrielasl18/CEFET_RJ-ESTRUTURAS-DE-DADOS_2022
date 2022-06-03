@@ -15,6 +15,15 @@ bool listaVazia(){
     else 
         return false;
 }
+void listar(){
+    if(!listaVazia()){ 
+    noPtr p = topo;
+        while(p!=NULL){
+        cout << p << endl;
+        }
+    }
+     
+}
 void push(){
     noPtr p;
     int valor;
@@ -30,7 +39,7 @@ void pop(){
     noPtr p = topo;
     if(!listaVazia()){
         topo = topo->prox;
-        delete(p); //desalocar memória
+        delete(p); //desalocar memória (deletando o endereço de memória, falando que ele está livre)
         cout << "\nO elemento foi retirado da pilha." << endl;
     }
     else cout << "\nLista vazia!" << endl;
@@ -42,7 +51,7 @@ int main(){
         switch(op){
             case 1: push();break;
             case 2: pop();break;
-            // case 3: ;break;
+            case 3: listar();break;
         }
     }while(op!=0);
 
