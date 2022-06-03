@@ -48,6 +48,7 @@ void pop(){
 int main(){
     int op;
     do{
+        cout << "1 - push(inserir elementos)\n2 - pop(remover elementos)\n3 - listar(listar os elementos)\nDigite o numero da opcao desejada: ";
         cin >> op;
         switch(op){
             case 1: push();break;
