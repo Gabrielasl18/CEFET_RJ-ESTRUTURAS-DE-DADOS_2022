@@ -16,6 +16,7 @@ bool listaVazia(){
         return false;
 }
 void listar(){
+<<<<<<< HEAD
     noPtr p = topo;
     if(!listaVazia()){ 
         while(p!=NULL){
@@ -23,6 +24,16 @@ void listar(){
         p = p->prox;
         }
     }
+=======
+    if(!listaVazia()){ 
+    noPtr p = topo;
+        while(p!=NULL){
+        cout << p << endl;
+        p++;
+        }
+    }
+     
+>>>>>>> d51f36acdce93298362b4000e3bab910f2f5b638
 }
 void push(){
     noPtr p;
