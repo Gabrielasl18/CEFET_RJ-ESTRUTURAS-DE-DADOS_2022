@@ -9,6 +9,21 @@ struct no{
 typedef struct no *noPtr;
 noPtr topo = NULL;
 
+bool listaVazia(){
+    if(topo == NULL)
+        return true;
+    else 
+        return false;
+}
+void listar(){
+    noPtr p = topo;
+    if(!listaVazia()){ 
+        while(p!=NULL){
+        cout << p << endl;
+        p = p->prox;
+        }
+    }
+}
 void push(){
     noPtr p;
     int valor;
@@ -20,22 +35,24 @@ void push(){
     p->prox = topo;
     topo = p;
 }
-// void pop(){
-//     noPtr p = topo;
-//     if(!listaVazia()){
-//         topo = topo->prox;
-//         delete(p);
-//         cout << "\nO elemento foi retirado da pilha." << endl;
-//     }
-//     else cout << "\nLista vazia!" <<;
-// }
+void pop(){
+    noPtr p = topo;
+    if(!listaVazia()){
+        topo = topo->prox;
+        delete(p); //desalocar memória (deletando o endereço de memória, falando que ele está livre)
+        cout << "\nO elemento foi retirado da pilha." << endl;
+    }
+    else cout << "\nLista vazia!" << endl;
+}
 int main(){
     int op;
     do{
+        cout << "1 - push(inserir elementos)\n2 - pop(remover elementos)\n3 - listar(listar os elementos)\nDigite o numero da opcao desejada: ";
         cin >> op;
         switch(op){
             case 1: push();break;
-            // case 2: pop();break;
+            case 2: pop();break;
+            case 3: listar();break;
         }
     }while(op!=0);
 
