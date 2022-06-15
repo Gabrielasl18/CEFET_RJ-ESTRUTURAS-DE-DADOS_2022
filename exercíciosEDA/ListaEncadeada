@@ -1,0 +1,119 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct elemento {
+  int valor;
+  struct elemento
+      *proximo; // dentro do NO, criamos esse ponteiro para o próximo NÓ
+} No;
+
+typedef struct controle {
+  No *inicio;
+  No *fim;
+  int tamanho; // atualiza sempre que faz inserção ou remoção.
+} Lista;
+
+void inicializa(Lista *lista) {
+  lista->inicio = NULL;
+  lista->fim = NULL;
+  lista->tamanho = 0;
+}
+
+int inserirInicio(Lista *lista, int valor) {
+  No *novo = (No *)malloc(sizeof(No)); // alocando memória
+  if (novo == NULL) {
+    return -1;
+  }
+  novo->valor = valor;
+
+  if (lista->inicio == NULL) { // se a lista está vazia
+    novo->proximo = NULL;
+    lista->inicio = novo;
+    lista->fim = novo;
+  } else {
+    novo->proximo = lista->inicio;
+    lista->inicio = novo;
+  }
+  lista->tamanho++;
+  return 0;
+}
+
+int inserirFim(Lista *lista, int valor) {
+  No *novo = (No *)malloc(sizeof(No));
+
+  if (novo == NULL) {
+    return -1;
+  }
+  novo->valor = valor;
+  novo->proximo = NULL;
+
+  if (lista->inicio == NULL) {
+    lista->inicio = novo;
+    lista->fim = novo;
+  } else {
+    lista->fim->proximo = novo;
+    lista->fim = novo;
+  }
+  lista->tamanho++;
+  return 0;
+}
+
+void removeInicio(Lista *lista) {
+  if (lista->inicio != NULL) {
+    No *no = lista->inicio;
+    lista->inicio = no->proximo; // criando cópia do segundo elemento e
+                                 // colocando como o primeiro elemento
+    lista->tamanho--;            // diminuindo o tamanho
+    if (lista->inicio == NULL) {
+      lista->fim = NULL;
+      free(no);
+    }
+  }
+}
+void remover(Lista *lista, int valor) {
+  No *inicio = lista->inicio;
+  No *aRemover = NULL;
+
+  if (inicio != NULL &&
+      lista->inicio->valor == valor) { // se o primeiro elemento da lista for NULL e se a primeira posição da lista tiver o valor que eu quero remover
+    aRemover = lista->inicio; // o auxiliar vai receber a cópia do primeiro NO e vai ter tbm uma cópia do ponteiro para o segundo
+    lista->inicio = aRemover->proximo;
+    if (lista->inicio == NULL) {
+      lista->fim = NULL;
+    }
+  } else {
+    while (inicio != NULL && inicio->proximo != NULL &&
+           inicio->proximo->valor != valor) {
+      inicio = inicio->proximo;
+      if (inicio != NULL && inicio->proximo != NULL) {
+        aRemover = lista->inicio;
+        inicio->proximo = aRemover->proximo;
+        if (inicio->proximo == NULL) {
+          lista->fim = NULL;
+        }
+      }
+    }
+  }
+  if (aRemover) {
+    free(aRemover);
+    lista->tamanho--;
+  }
+}
+void imprime(Lista *lista) {
+  No *atual = lista->inicio;
+  printf("Tamanho atual da lista = %d\n", lista->tamanho);
+  while (atual != NULL) {
+    printf("valor = %d\n", atual->valor);
+    atual = atual->proximo;
+  }
+}
+int main() {
+  Lista *lista = (Lista *)malloc(sizeof(lista));
+  int op, valor;
+  if (lista == NULL) {
+    return -1;
+  }
+  inicializa(lista);
+  inserirInicio(lista,11);
+  imprime(lista);
+}
